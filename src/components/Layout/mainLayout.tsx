@@ -1,5 +1,5 @@
 import SideBar from "../SideBar/SideBar";
-import Dashboard from "../Dashboard/Dashboard";
+import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   return (
@@ -8,7 +8,7 @@ const MainLayout = () => {
         <aside>
           <SideBar />
         </aside>
-        <Dashboard />
+        <Outlet />
       </main>
     </>
   );
