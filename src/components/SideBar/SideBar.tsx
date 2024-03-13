@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BsGrid } from "react-icons/bs";
 import { FaBucket, FaRegUser } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const SideBar = () => {
   const [value, setValue] = useState<{
@@ -47,11 +47,11 @@ const SideBar = () => {
           </NavLink>
           <div className="sidebar-items">
             <ul>
-              {menuItems.map((item: SidebarItem) => {
+              {menuItems.map((item: SidebarItem, index: number) => {
                 return item.subMenu.length > 0 ? (
                   <>
                     <li
-                      key={item.id}
+                      key={`${item.id}-${index}`}
                       onClick={() =>
                         setValue({ id: item.id, expanded: !value.expanded })
                       }

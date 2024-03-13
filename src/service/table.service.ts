@@ -1,15 +1,14 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import sanitizedConfig from "../utils/envConfig";
 import { TableData } from "../types/main.type";
+import { useDispatchContext } from "../store/store";
 
-export function useFetchTable(): [TableData[], boolean, string | null, any] {
-  const [tableData, setTableData] = useState<TableData[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
+export function useFetchTable() {
+  const dispatch = useDispatchContext();
   useEffect(() => {
     async function fetchData() {
       try {
+        dispatch({ type: "FETCH_TABLE" });
         const url = sanitizedConfig.VITE_API_URL;
         const response = await fetch(url, {
           method: "GET",
@@ -23,16 +22,17 @@ export function useFetchTable(): [TableData[], boolean, string | null, any] {
         }
 
         const data: TableData[] = await response.json();
-        setTableData(data);
+        dispatch({ type: "FETCH_TABLE_SUCCESS", payload: data });
       } catch (error) {
-        setError(error.message || "An error occurred");
-      } finally {
-        setLoading(false);
+        if (error) {
+          dispatch({
+            type: "FETCH_TABLE_FAILURE",
+            payload: error?.message || "An error occurred",
+          });
+        }
       }
     }
 
     fetchData();
   }, []);
-
-  return [tableData, loading, error, setTableData];
 }
