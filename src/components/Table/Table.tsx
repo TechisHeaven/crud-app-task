@@ -18,6 +18,10 @@ const Table = ({ tableData }: { tableData: TableData[] }) => {
     "address",
   ];
 
+  function HandleClickItem(value: TableData) {
+    console.log(`${value.firstName} ${value.lastName}`);
+  }
+
   //rendering tailwind css table with dynamic data.
   return (
     <table className="overflow-x-auto w-full table-auto bg-white rounded-md">
@@ -36,7 +40,11 @@ const Table = ({ tableData }: { tableData: TableData[] }) => {
       <tbody>
         {tableData.map((value: TableData) => {
           return (
-            <tr key={value.id} className="hover:bg-gray-100">
+            <tr
+              onClick={() => HandleClickItem(value)}
+              key={value.id}
+              className="hover:bg-gray-100 cursor-pointer"
+            >
               <td className="px-4 py-2">{value.id}</td>
               <td className="px-4 py-2">
                 <img
