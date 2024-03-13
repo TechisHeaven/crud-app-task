@@ -2,7 +2,7 @@ import { BiChevronRight } from "react-icons/bi";
 import Table from "../Table/Table";
 import { useFetchTable } from "../../service/table.service";
 import { Helmet } from "react-helmet";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import AddEmployeeModel from "../Model/AddEmployee";
 import { useStateContext } from "../../store/store";
 import Loader from "../Loader/Loader";
@@ -34,7 +34,7 @@ const Dashboard = () => {
     return <Loader />;
   }
 
-  //! used React Helmet for SEO and meta tags like for changing titles and other meta information on pages
+  //* used React Helmet for SEO and meta tags like for changing titles and other meta information on pages
   return (
     <>
       <Helmet>

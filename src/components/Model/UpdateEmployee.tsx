@@ -2,7 +2,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ChangeEvent, FormEvent, Fragment, useState } from "react";
 import { useDispatchContext, useStateContext } from "../../store/store";
 import { Prettify, TableData } from "../../types/main.type";
-import { IoMdReturnLeft } from "react-icons/io";
 
 export default function UpdateEmployeeModal({
   id,
