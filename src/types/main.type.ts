@@ -1,3 +1,4 @@
+//table data interface for type information
 export interface TableData {
   id: number | string;
   imageUrl: string;
@@ -11,6 +12,21 @@ export interface TableData {
   address: string;
 }
 
+// prettify  utility type to shows keys and values
 export type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
+
+//sidebar type information
+export interface SidebarItem {
+  id: number | string;
+  name: string;
+  subMenu: Item[];
+}
+
+//sidebar nested items information
+export interface Item {
+  id: number | string;
+  name: string;
+  icon: string;
+}

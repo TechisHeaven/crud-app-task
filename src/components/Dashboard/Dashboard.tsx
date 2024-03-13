@@ -5,12 +5,13 @@ import { Helmet } from "react-helmet";
 import { useMemo, useState } from "react";
 import AddEmployeeModel from "../Model/AddEmployee";
 import { useStateContext } from "../../store/store";
+import Loader from "../Loader/Loader";
 
 const Dashboard = () => {
-  // const [tableData, loading, error, setTableData] = useFetchTable();
-
+  // const [tableData, loading, error, setTableData] = useFetchTable(); // it will return like this but have to pass data through pages which is not the better and reliable method of sending data accross comps.
   useFetchTable();
   let [isOpen, setIsOpen] = useState(false);
+  //* state context to access state of tables anywhere.
   let state = useStateContext();
   const error = state.tables.error;
   const loading = state.tables.loading;
@@ -28,15 +29,12 @@ const Dashboard = () => {
   if (error) {
     throw new Error(error);
   }
-
+  //handling for maintaing loading and error state;
   if (loading) {
-    return (
-      <div className="w-full h-screen grid place-items-center">
-        <span className="border-gray-300 h-10 w-10 animate-spin rounded-full border-4 border-t-blue-600"></span>
-      </div>
-    );
+    return <Loader />;
   }
 
+  //! used React Helmet for SEO and meta tags like for changing titles and other meta information on pages
   return (
     <>
       <Helmet>

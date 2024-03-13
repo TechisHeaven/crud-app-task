@@ -12,7 +12,7 @@ export default function DeleteModal({
   closeModal: any;
 }) {
   const dispatch = useDispatchContext();
-
+  //handle delete function to get id and remove that element from that index
   async function handleDelete() {
     await dispatch({ type: "REMOVE_FROM_TABLE", payload: id });
     closeModal();

@@ -3,15 +3,15 @@ import { BsGrid } from "react-icons/bs";
 import { FaBucket, FaRegUser } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
 import { NavLink } from "react-router-dom";
+import { Item, SidebarItem } from "../../types/main.type";
 
 const SideBar = () => {
+  //set which item of nested item is expanded or not
   const [value, setValue] = useState<{
     id: string | number;
     expanded: boolean;
-  }>({
-    id: 1,
-    expanded: false,
-  });
+  }>({ id: 1, expanded: false });
+  // sidebar to expand width or not
   const [expandedSideBar, setExpandedSideBar] = useState(false);
 
   return (
@@ -109,18 +109,6 @@ const SideBar = () => {
 };
 
 export default SideBar;
-
-interface SidebarItem {
-  id: number | string;
-  name: string;
-  subMenu: Item[];
-}
-
-interface Item {
-  id: number | string;
-  name: string;
-  icon: string;
-}
 
 const menuItems = [
   {

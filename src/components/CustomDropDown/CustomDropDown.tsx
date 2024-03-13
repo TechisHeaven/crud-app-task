@@ -11,6 +11,7 @@ export default function CustomDropDown({
   children: React.ReactNode;
   id: number | string;
 }) {
+  //*custom dropdown from tailwind ui and headless ui
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
   }
@@ -81,6 +82,7 @@ export default function CustomDropDown({
           </div>
         </Menu.Items>
       </Transition>
+
       <UpdateEmployeeModal id={id} isOpen={isOpen} closeModal={closeModal} />
       <DeleteModal
         id={id}

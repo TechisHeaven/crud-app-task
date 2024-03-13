@@ -1,10 +1,12 @@
-import { useRouteError } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 
 export default function ErrorPage() {
   const error = useRouteError();
-
+  if (!error) {
+    return;
+  }
   function refreshPage() {
-    window.location.reload(false);
+    window.location.reload();
   }
 
   return (
@@ -17,12 +19,21 @@ export default function ErrorPage() {
       <p>
         <i>{error.statusText || error.message}</i>
       </p>
-      <button
-        onClick={refreshPage}
-        className="bg-blue-600 p-2 px-4 rounded-md capitalize text-white"
-      >
-        refreshPage
-      </button>
+      {error.statusText == "Not Found" ? (
+        <Link
+          to="/"
+          className="bg-blue-600 p-2 px-4 rounded-md capitalize text-white"
+        >
+          Home
+        </Link>
+      ) : (
+        <button
+          onClick={refreshPage}
+          className="bg-blue-600 p-2 px-4 rounded-md capitalize text-white"
+        >
+          refreshPage
+        </button>
+      )}
     </div>
   );
 }

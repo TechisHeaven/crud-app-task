@@ -1,10 +1,18 @@
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
-import sanitizedConfig from "./utils/envConfig";
+import { router } from "./router";
 
 function App() {
-  // const url = sanitizedConfig.VITE_API_URL;
-  // console.log(url);
-  return <></>;
+  //if user wan't to add something can do
+  //as per
+  return (
+    <>
+      <RouterProvider
+        router={router}
+        fallbackElement={<p>Initial Load...</p>}
+      />
+    </>
+  );
 }
 
 export default App;

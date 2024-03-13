@@ -4,6 +4,7 @@ import CustomDropDown from "../CustomDropDown/CustomDropDown";
 
 const Table = ({ tableData }: { tableData: TableData[] }) => {
   // const tableHeadings = Object.keys(tableData[2] || {}).map((key) => key);
+  //* we can use both like if dont know about data can use like this to maintain all tablesheading or not to hard code everything
   const tableHeadings = [
     "id",
     "ImageUrl",
@@ -17,6 +18,7 @@ const Table = ({ tableData }: { tableData: TableData[] }) => {
     "address",
   ];
 
+  //rendering tailwind css table with dynamic data.
   return (
     <table className="overflow-x-auto w-full table-auto bg-white rounded-md">
       <thead className="bg-gray-200">

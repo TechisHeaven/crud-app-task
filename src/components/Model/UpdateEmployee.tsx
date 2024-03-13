@@ -16,16 +16,19 @@ export default function UpdateEmployeeModal({
   if (!isOpen) {
     return;
   }
+
+  // filter helper to fetch id which pass to update modal
   function GetDataID(value: TableData) {
     return value.id === id;
   }
-
+  //dispatch and state context to manage state in application
   const dispatch = useDispatchContext();
   const state = useStateContext();
   const table = state.tables.tables;
   const filteredData: Prettify<TableData> = table.filter(GetDataID)[0];
   const [formData, setFormData] = useState<TableData>(filteredData);
 
+  //form data handeling function to get only data and save to formdata fields on submit get by name attr and set values in local state
   const handleFormData = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData((prevFormData: TableData) => ({
@@ -34,6 +37,7 @@ export default function UpdateEmployeeModal({
     }));
   };
 
+  //on submit form handle data and dispatch state to manage and update
   async function HandleForm(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const index = table.findIndex((item: TableData) => item.id === id);

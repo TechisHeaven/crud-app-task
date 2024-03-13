@@ -1,14 +1,15 @@
 import { createContext, useContext } from "react";
 import { TableData } from "../types/main.type";
 
-// Define the initial state for posts
+// define the initial state for table
 export const initialTableState = {
   tables: [] as TableData[],
   loading: false,
   error: null,
 };
 
-// Define the post reducer function
+// REDUCER: reducer function with actions in switch
+// Define the table reducer function
 export function tableReducer(state = initialTableState, action: any) {
   switch (action.type) {
     case "RESET_TABLE":
@@ -59,31 +60,31 @@ export function tableReducer(state = initialTableState, action: any) {
       }
     case "REMOVE_FROM_TABLE":
       const tableIdToRemove = action.payload;
-      const updatedPosts = state.tables.filter(
+      const updatedTable = state.tables.filter(
         (table) => table.id !== tableIdToRemove
       );
       return {
         ...state,
         loading: false,
-        tables: updatedPosts,
+        tables: updatedTable,
       };
     default:
       return state;
   }
 }
 
-// Combine the reducers into a single reducer function
+// combine the reducers into a single reducer function and then access within on state better for low data maintaining accross application
 export function rootReducer(state: any, action: any) {
   return {
     tables: tableReducer(state.tables, action),
   };
 }
 
-// Create context objects for the state and dispatch function
+// create context objects for the state and dispatch function
 export const StateContext = createContext<any>(null);
 export const DispatchContext = createContext<any>(null);
 
-// Define custom hooks to access the state and dispatch function from context
+// define custom hooks to access the state and dispatch function from context
 export function useStateContext() {
   return useContext(StateContext);
 }
